@@ -23,7 +23,7 @@ Para permitir que se pueda acceder desde cualquier ip.
 
 Si se quiere habilitar la bitácora para saber qué está pasando, se agrega lo siguiente al final del archivo:
 
-```JSON
+```Javascript
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -52,4 +52,13 @@ LOGGING = {
     },
 }
 ```
-   
+Para probar que funcione, se ejecuta lo siguiente:
+
+```Shell
+python3 manage.py runserver 0:8000
+```
+
+Para comprobar que django esté corriendo, en el navegador se va a http://servidor-django:8000 y deberá mostrar lo siguiente:
+
+![Pantalla de Django](https://github.com/StrayChild01/pruebas-django/blob/master/imgs/django-test.png "Prueba django")
+
