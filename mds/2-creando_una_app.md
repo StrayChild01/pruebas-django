@@ -45,3 +45,9 @@ urlpatterns = [
 ```
 
 La razón por la cual se hace esto, es para que se pueda editar directamente el archivo de _urls.py_ dentro de _mi_app_ y no tengamos muchas urls dentro del proyecto principal.
+
+Para probar que funcione correctamente, se necesita revisar en el navegador http://miservidor-django:8000/mi_app/
+
+![Pantalla de Django](https://github.com/StrayChild01/pruebas-django/blob/master/imgs/mi_app-mostriprueba.png "Prueba django")
+
+Nótese que después de hacer esto, la página de prueba dejará de funcionar, puesto que django ya tiene al menos una petición que responder.
