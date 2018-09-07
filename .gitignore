@@ -1,0 +1,4 @@
+# This is my config file.
+
+# Ignorar todos los logs
+*.log
