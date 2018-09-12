@@ -11,3 +11,5 @@ La manera en que este proyecto está estructurado es:
   - db.sqlite3 
   - manage.py 
   - readme.md
+  
+La documentación y tutorial puede ser encontrado en la [documentación de django](https://django.readthedocs.io/en/stable/intro/index.html)
