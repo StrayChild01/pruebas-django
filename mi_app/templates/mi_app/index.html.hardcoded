@@ -1,0 +1,9 @@
+{% if todos_departamentos %}
+    <ul>
+    {% for departamento in todos_departamentos %}
+        <li><a href="/mi_app/{{ departamento.id }}/">{{ departamento.nombre_departamento }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay departamentos que listar.</p>
+{% endif %}

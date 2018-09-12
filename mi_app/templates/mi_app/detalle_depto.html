@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+            <!-- Required meta tags -->            
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            <!-- Bootstrap CSS -->
+            <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">            
+    </head>
+    <body>
+        <h2>
+            Detalle del departamento {{ departamento.pk }}
+        </h2>
+		<hr>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>                        
+                        <th scope="col">id </th>
+                        <th scope="col">Nombre Departamento</th>
+                        <th scope="col">Nombre Gerente</th>
+                        <th scope="col">Fecha Creación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>                        
+                        <td>{{ departamento.id }}</td>
+                        <th scope="row">{{ departamento.nombre_departamento }}</th>
+                        <td>{{ departamento.nombre_gerente }}</td>
+                        <td>{{ departamento.creado_depto }}</td>
+                    </tr>    
+                </tbody>
+            </table>
+		<hr>
+    <body>
+</html>

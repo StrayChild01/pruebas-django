@@ -25,12 +25,15 @@ SECRET_KEY = 'eg$!()ta7leuurew18&zu#xg@q3ak(4nm)_5__6(n$4))#j$a)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# The * is to allow all hosts.
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # This is my app
+    'mi_app.apps.MiAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,7 +122,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This is to point the static folder to a project folder, instead
+# of an app folder.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),    
+]
 
+# Enable the logging. It is off by default.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
