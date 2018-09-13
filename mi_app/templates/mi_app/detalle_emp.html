@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <!-- Required meta tags -->            
+            <!-- Required meta tags -->
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
             <!-- Bootstrap CSS -->
-            <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">            
+            <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">
     </head>
     <body>
         <h2>
@@ -16,7 +16,7 @@
 		<hr>
             <table class="table">
                 <thead class="thead-dark">
-                    <tr>                        
+                    <tr>
                         <th scope="col">id </th>
                         <th scope="col">nombre departamento</th>
                         <th scope="col">Nombre</th>
@@ -24,12 +24,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>                        
+                    <tr>
                         <td>{{ empleado.id }}</td>
                         <th scope="row">{{ empleado.departamento.nombre_departamento }}</th>
                         <td>{{ empleado.nombre }}</td>
                         <td>{{ empleado.alias }}</td>
-                    </tr>    
+                    </tr>
                 </tbody>
             </table>
 		<hr>

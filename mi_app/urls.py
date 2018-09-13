@@ -8,7 +8,7 @@ urlpatterns = [
     path('<int:depto_id>/', views.detalle_depto, name='detalle_depto'),
     path('<int:depto_id>/detalle_depto/', views.detalle_depto, name='detalle_depto'),
     path('<int:emp_id>/detalle_empleado/', views.detalle_empleado, name='detalle_empleado'),
-    path('<int:dept_id>/lista_deptos/', views.lista_deptos, name='lista_deptos'),
-    path('<int:emp_id>/lista_empleados/', views.lista_empleados, name='lista_empleados'),
+    path('<int:dept_id>/edita_depto/', views.edita_depto, name='edita_depto'),
+    path('<int:dept_id>/set_depto/', views.set_depto, name='set_depto'),
+    path('<int:emp_id>/edita_empleado/', views.edita_empleado, name='edita_empleado'),
 ]
-

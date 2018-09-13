@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            <!-- Bootstrap CSS -->
+            <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">            
+    </head>
+    <body>
+        <h2>
+            Edici&oacute;n de departamento <i>{{ departamento.nombre_departamento }}</i>
+        </h2>
+        <hr>
+
+        {% if mensaje_error %}
+            <p>
+                Ocurri&oacute; el siguiente error: <b>{ error_message }</b>
+            </p>
+        {% endif %}
+
+        <form method="post" action="{% url 'mi_app:set_depto' departamento.id %}">
+        
+            <!--
+                De acuerdo a la documentación, csrf_token sirve para evitar el 
+                "cross site forgery" y agregar seguridad a la forma.
+            -->
+            {% csrf_token %}
+            Nombre Departamento:
+            <input type="text" name="nombre_departamento" value="{{ departamento.nombre_departamento}}"/>
+            <br/>            
+            Nombre Gerente:
+            <input type="text" name="nombre_gerente" value="{{ departamento.nombre_gerente}}"/>
+            <br/>
+            <input type="submit" value="Actualizar">
+        </form>      
+		<hr>
+    </body>
+</html>

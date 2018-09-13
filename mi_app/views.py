@@ -1,8 +1,10 @@
+import datetime, pytz
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
-from django.http import HttpResponse, Http404
+from django.utils.timezone import utc
 from .models import Departamento, Empleado
-
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -22,7 +24,7 @@ def detalle_depto(request, depto_id):
     #except Departamento.DoesNotExist:
     #    raise Http404("Lo sentimos, este departamento no existe")
     departamento = get_object_or_404(Departamento, pk=depto_id)
-        
+
     return render(request, 'mi_app/detalle_depto.html', {'departamento': departamento})
 
 def detalle_empleado(request, emp_id):
@@ -33,11 +35,31 @@ def detalle_empleado(request, emp_id):
 
     return render(request, 'mi_app/detalle_emp.html', {'empleado': empleado})
 
-def lista_deptos(request, dept_id):
-    response = "Estás viendo el listado de los departamentos %s."
-    return HttpResponse(response % dept_id)
-    
-def lista_empleados(request, emp_id):
+def edita_depto(request, dept_id):
+    departamento = get_object_or_404(Departamento, pk=dept_id)
+    return render(request, 'mi_app/edita_depto.html', {'departamento': departamento})
+
+def set_depto(request, dept_id):
+    departamento = get_object_or_404(Departamento, pk=dept_id)
+    try:
+        tz = pytz.timezone('America/Mexico_City')
+    except (KeyError, Departamento.DoesNotExist):
+        return render(request, 'mi_app:edita_depto', {
+            'departamento': departamento,
+            'mensaje_error': "No has seleccionado un departamento.",
+        })
+    else:
+        now = datetime.datetime.utcnow().replace(tzinfo=tz)
+        departamento.nombre_departamento = request.POST['nombre_departamento']
+        departamento.nombre_gerente = request.POST['nombre_gerente']
+        departamento.creado_depto = str(now)
+        departamento.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('mi_app:edita_depto', args=[departamento.pk]))
+
+def edita_empleado(request, emp_id):
     response = "Estás viendo el listado de los empleados %s."
     return HttpResponse(response % emp_id)
 

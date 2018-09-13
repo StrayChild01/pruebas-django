@@ -2,21 +2,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <!-- Required meta tags -->            
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-            <!-- Bootstrap CSS -->
-            <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">            
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link href="{% static "/css/bootstrap.min.css" %}" rel="stylesheet">
     </head>
     <body>
         <h2>
-            Detalle del departamento {{ departamento.pk }}
+            Detalles de {{ departamento.nombre_departamento }}
         </h2>
-		<hr>
+        <hr>
             <table class="table">
                 <thead class="thead-dark">
-                    <tr>                        
+                    <tr>
                         <th scope="col">id </th>
                         <th scope="col">Nombre Departamento</th>
                         <th scope="col">Nombre Gerente</th>
@@ -24,14 +23,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>                        
+                    <tr>
                         <td>{{ departamento.id }}</td>
-                        <th scope="row">{{ departamento.nombre_departamento }}</th>
+                        <td>{{ departamento.nombre_departamento }}</td>
                         <td>{{ departamento.nombre_gerente }}</td>
                         <td>{{ departamento.creado_depto }}</td>
-                    </tr>    
+                    </tr>
                 </tbody>
             </table>
-		<hr>
-    <body>
+            <br>
+            <!--
+                Django no soporta:
+                    - Etiquetas multilínea, por lo tanto, en cada
+                      línea se tiene que empezar y terminar el código. 
+                    - Terminaciones de instrucción ":" como en python regular
+                      para if, for etc. Por lo tanto no se ponen.
+                    - Para asignar una variable, se tiene que usar "with" y
+                      terminar donde se usa como endwith
+            -->
+            {% with todos_empleados=departamento.empleado_set.all %}
+            {% if todos_empleados %}
+                El departamento {{ departamento.nombre_departamento }}, tiene los siguientes empleados:
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id </th>
+                            <th scope="col">Nombre Departamento</th>
+                            <th scope="col">Nombre Empleado</th>
+                            <th scope="col">Alias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for empleado in todos_empleados %}
+                            <tr>
+                                <td>{{ empleado.id }}</td>
+                                <th scope="row">{{ empleado.departamento.nombre_departamento }}</th>
+                                <td>{{ empleado.nombre }}</td>
+                                <td>{{ empleado.alias }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            {% endif %}
+            {% endwith %}
+        <hr>
+    </body>
 </html>
